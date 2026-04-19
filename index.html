@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheVpod — Ideas Worth Knowing</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital@1&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#0a0a0a;--bg2:#111111;--bg3:#1a1a1a;--amber:#f5a623;--amber-dark:#a86e14;--text:#ede9e0;--muted:#6b6b63;--border:rgba(245,166,35,0.12);--border-light:rgba(237,233,224,0.08)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden;padding-top:80px}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 5rem;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo-left{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.1em;color:var(--text);text-decoration:none}
+.logo-left span{color:var(--amber)}
+.logo-center{position:absolute;left:50%;transform:translateX(-50%)}
+.logo-center img{width:64px;height:64px;object-fit:contain;mix-blend-mode:screen}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--amber)}
+.hero{min-height:calc(100vh - 80px);display:flex;flex-direction:column;justify-content:flex-end;padding:0 5rem 7rem;position:relative;overflow:hidden}
+.hero-bg-letter{position:absolute;right:-3vw;top:50%;transform:translateY(-55%);font-family:'Bebas Neue',sans-serif;font-size:52vw;color:rgba(245,166,35,0.035);line-height:1;pointer-events:none;user-select:none;z-index:0}
+.hero-content{position:relative;z-index:1}
+.hero-tag{display:inline-block;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--amber);border:1px solid var(--amber-dark);padding:0.28rem 0.85rem;border-radius:2rem;margin-bottom:2rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,11rem);line-height:0.9;letter-spacing:0.015em;margin-bottom:2.5rem}
+.hero h1 em{font-family:'Playfair Display',serif;font-style:italic;color:var(--amber);font-size:0.9em}
+.hero-desc{max-width:540px;color:var(--muted);font-size:1rem;font-weight:300;line-height:1.9;margin-bottom:3rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2rem;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all 0.22s;cursor:pointer;border:none}
+.btn-amber{background:var(--amber);color:#0a0a0a}
+.btn-amber:hover{background:#f0bc5e;transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--text);border:1px solid var(--border-light)}
+.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--border) 30%,var(--border) 70%,transparent);margin:0 5rem}
+section{padding:7rem 5rem}
+.s-label{font-size:0.68rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--amber);display:flex;align-items:center;gap:0.7rem;margin-bottom:1.2rem}
+.s-label::after{content:'';display:block;width:36px;height:1px;background:var(--amber-dark)}
+.s-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,5vw,4.5rem);letter-spacing:0.02em;line-height:0.95;margin-bottom:1rem}
+.s-sub{color:var(--muted);font-size:0.95rem;font-weight:300;line-height:1.9;max-width:480px;margin-bottom:3.5rem}
+.who{background:var(--bg2)}
+.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
+.who-right{display:flex;flex-direction:column;gap:1.2rem}
+.who-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-box{background:var(--bg3);border:1px solid var(--border);padding:1.5rem;border-radius:2px}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:var(--text);line-height:1;margin-bottom:0.2rem}
+.stat-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+.mission-box{background:var(--bg3);border:1px solid var(--border);padding:1.8rem;border-radius:2px}
+.mission-box p{font-size:0.95rem;color:var(--muted);font-weight:300;line-height:1.9}
+.mission-box strong{color:var(--amber);font-weight:500}
+.now-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+.available-badge{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#3ddc84;border:1px solid rgba(61,220,132,0.3);padding:0.28rem 0.85rem;border-radius:2rem;white-space:nowrap;flex-shrink:0;margin-top:0.4rem}
+.dot{width:6px;height:6px;border-radius:50%;background:#3ddc84;animation:pulse 2s infinite;flex-shrink:0}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem}
+.book-card{background:var(--bg2);border:1px solid var(--border);border-radius:2px;overflow:hidden;display:flex;flex-direction:column;transition:border-color 0.2s,transform 0.22s}
+.book-card:hover{border-color:var(--amber-dark);transform:translateY(-4px)}
+.book-cover{height:190px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;flex-shrink:0}
+.book-cover::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 22px,rgba(245,166,35,0.025) 22px,rgba(245,166,35,0.025) 23px)}
+.book-title-cover{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:var(--amber);text-align:center;padding:1.5rem;line-height:1.35;position:relative;z-index:1}
+.book-body{padding:1.3rem;display:flex;flex-direction:column;flex:1}
+.book-genre{font-size:0.66rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:0.5rem}
+.book-name{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:0.4rem;line-height:1.4}
+.book-blurb{font-size:0.8rem;color:var(--muted);line-height:1.65;flex:1}
+.book-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--border)}
+.book-lang{font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted)}
+.download-btn{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.75rem;font-weight:600;color:#0a0a0a;background:var(--amber);padding:0.4rem 1rem;border-radius:2px;text-decoration:none;transition:background 0.2s;border:none;cursor:pointer}
+.download-btn:hover{background:#f0bc5e}
+.books-empty{grid-column:1/-1;text-align:center;padding:4rem 2rem;border:1px dashed rgba(245,166,35,0.15);border-radius:2px;color:var(--muted);font-size:0.9rem}
+.books-loading{grid-column:1/-1;text-align:center;padding:3rem;color:var(--muted);font-size:0.8rem;letter-spacing:0.15em;text-transform:uppercase}
+.coming{background:var(--bg2)}
+.coming-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem}
+.coming-card{background:var(--bg3);border:1px dashed rgba(245,166,35,0.15);border-radius:2px;padding:2rem 1.5rem;display:flex;flex-direction:column;align-items:flex-start;gap:0.7rem;position:relative}
+.coming-card::after{content:'SOON';position:absolute;top:0.7rem;right:0.8rem;font-size:0.58rem;letter-spacing:0.2em;color:var(--muted);border:1px solid var(--border-light);padding:0.15rem 0.45rem;border-radius:2rem}
+.coming-icon{font-size:1.4rem;opacity:0.6}
+.coming-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:0.06em;color:var(--text)}
+.coming-desc{font-size:0.78rem;color:var(--muted);line-height:1.6}
+.platforms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1rem}
+.platform-card{background:var(--bg2);border:1px solid var(--border);border-radius:2px;padding:1.6rem;text-decoration:none;display:flex;flex-direction:column;gap:0.5rem;transition:border-color 0.2s,transform 0.2s}
+.platform-card:hover{border-color:var(--amber-dark);transform:translateY(-3px)}
+.p-name{font-size:0.78rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text)}
+.p-handle{font-size:0.78rem;color:var(--amber)}
+.p-arrow{font-size:1rem;color:var(--muted);margin-top:auto;padding-top:0.8rem;transition:color 0.2s}
+.platform-card:hover .p-arrow{color:var(--amber)}
+footer{border-top:1px solid var(--border);padding:2.5rem 5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:0.1em;color:var(--muted)}
+.footer-logo span{color:var(--amber)}
+.footer-center img{width:56px;height:56px;object-fit:contain;mix-blend-mode:screen}
+.footer-copy{font-size:0.75rem;color:var(--muted)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{animation:fadeUp 0.6s ease both}
+.hero h1{animation:fadeUp 0.7s 0.1s ease both}
+.hero-desc{animation:fadeUp 0.7s 0.2s ease both}
+.hero-cta{animation:fadeUp 0.7s 0.3s ease both}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}.logo-center img{width:48px;height:48px}.hero{padding:2rem 1.5rem 4rem}section{padding:4rem 1.5rem}.who-grid{grid-template-columns:1fr;gap:3rem}.rule{margin:0 1.5rem}footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo-left">The<span>V</span>pod</a>
+  <div class="logo-center"><img src="TheVpod.png" alt="TheVpod"></div>
+  <ul class="nav-links">
+    <li><a href="#who">About</a></li>
+    <li><a href="#now">Books</a></li>
+    <li><a href="#coming">Coming Soon</a></li>
+    <li><a href="#platforms">Platforms</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg-letter">V</div>
+  <div class="hero-content">
+    <div class="hero-tag">Rwanda · Kinyarwanda</div>
+    <h1>Ideas<br>Worth<br><em>Knowing</em></h1>
+    <p class="hero-desc">TheVpod is a Rwandan media brand covering finance, AI, politics, entertainment, culture and beyond. We break it down, question it, and tell you what it means for us.</p>
+    <div class="hero-cta">
+      <a href="#now" class="btn btn-amber">Explore Now</a>
+      <a href="#platforms" class="btn btn-ghost">Follow TheVpod</a>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section class="who" id="who">
+  <div class="who-grid">
+    <div>
+      <div class="s-label">Who We Are</div>
+      <h2 class="s-title">The Brand</h2>
+      <p class="s-sub">TheVpod is not one thing. It's a media brand built to grow — starting with short-form content across every platform, expanding into long-form video, and eventually a full podcast with guests and real conversations.</p>
+      <p style="color:var(--muted);font-size:0.9rem;font-weight:300;line-height:1.9">The world's biggest conversations happen in languages and formats that leave most people out. TheVpod changes that — bringing what matters to a Rwandan audience, in Kinyarwanda, without watering it down.</p>
+    </div>
+    <div class="who-right">
+      <div class="who-stat-row">
+        <div class="stat-box"><div class="stat-num">6+</div><div class="stat-label">Platforms</div></div>
+        <div class="stat-box"><div class="stat-num">∞</div><div class="stat-label">Topics Covered</div></div>
+      </div>
+      <div class="mission-box">
+        <p>Starting <strong>solo</strong> with short-form content. Growing into <strong>long-form YouTube</strong>. Eventually a <strong>full podcast</strong> — with guests, debates, and real conversations. TheVpod has no ceiling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section id="now">
+  <div class="now-header">
+    <div>
+      <div class="s-label">Available Now</div>
+      <h2 class="s-title">The Library</h2>
+      <p class="s-sub">Famous books explained, summarized, and translated into Kinyarwanda — so the best ideas in the world are never out of reach.</p>
+    </div>
+    <span class="available-badge"><span class="dot"></span> Live Now</span>
+  </div>
+  <div class="books-grid" id="books-grid">
+    <div class="books-loading">Loading books...</div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section class="coming" id="coming">
+  <div class="s-label">What's Next</div>
+  <h2 class="s-title">Coming Soon</h2>
+  <p class="s-sub">TheVpod is just getting started. More content, more formats, more topics — all on the way.</p>
+  <div class="coming-grid">
+    <div class="coming-card"><div class="coming-icon">📺</div><div class="coming-name">Long-Form Video</div><div class="coming-desc">Deep dives and extended breakdowns on YouTube — beyond 60 seconds.</div></div>
+    <div class="coming-card"><div class="coming-icon">🎙️</div><div class="coming-name">The Podcast</div><div class="coming-desc">Guest conversations, debates, and real talks on what's happening in the world.</div></div>
+    <div class="coming-card"><div class="coming-icon">🌍</div><div class="coming-name">Politics & Culture</div><div class="coming-desc">What's happening politically and culturally — and what it means for Rwanda and Africa.</div></div>
+    <div class="coming-card"><div class="coming-icon">🤖</div><div class="coming-name">AI & Tech</div><div class="coming-desc">Breaking down AI and technology in a way that actually makes sense for our context.</div></div>
+    <div class="coming-card"><div class="coming-icon">📦</div><div class="coming-name">Products</div><div class="coming-desc">Digital products, guides, and resources built directly for you.</div></div>
+  </div>
+</section>
+
+<div class="rule"></div>
+
+<section id="platforms">
+  <div class="s-label">Find Us</div>
+  <h2 class="s-title">Follow TheVpod</h2>
+  <p class="s-sub">New content drops across every platform. Pick yours and follow along.</p>
+  <div class="platforms-grid">
+    <a href="https://youtube.com/@thevpod" target="_blank" class="platform-card"><div class="p-name">YouTube</div><div class="p-handle">@thevpod</div><div class="p-arrow">→</div></a>
+    <a href="https://tiktok.com/@thevpod_" target="_blank" class="platform-card"><div class="p-name">TikTok</div><div class="p-handle">@thevpod_</div><div class="p-arrow">→</div></a>
+    <a href="https://instagram.com/thevpod_" target="_blank" class="platform-card"><div class="p-name">Instagram</div><div class="p-handle">@thevpod_</div><div class="p-arrow">→</div></a>
+    <a href="https://facebook.com/TheVpod" target="_blank" class="platform-card"><div class="p-name">Facebook</div><div class="p-handle">TheVpod</div><div class="p-arrow">→</div></a>
+    <a href="https://snapchat.com/add/thevpod_" target="_blank" class="platform-card"><div class="p-name">Snapchat</div><div class="p-handle">@thevpod_</div><div class="p-arrow">→</div></a>
+    <a href="https://x.com/thevpod_" target="_blank" class="platform-card"><div class="p-name">X / Twitter</div><div class="p-handle">@thevpod_</div><div class="p-arrow">→</div></a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">The<span>V</span>pod</div>
+  <div class="footer-center"><img src="TheVpod.png" alt="TheVpod"></div>
+  <div class="footer-copy">© 2026 TheVpod · Ideas Worth Knowing</div>
+</footer>
+
+<script>
+// ============================================================
+//  PASTE YOUR JSONBIN DETAILS HERE AFTER SETUP
+// ============================================================
+const CONFIG = {
+  BIN_ID: 'YOUR_BIN_ID_HERE',
+  READ_KEY: 'YOUR_READ_KEY_HERE'
+}
+// ============================================================
+
+async function loadBooks() {
+  const grid = document.getElementById('books-grid')
+  if (CONFIG.BIN_ID === 'YOUR_BIN_ID_HERE') {
+    grid.innerHTML = '<div class="books-empty">Books coming soon. Check back shortly.</div>'
+    return
+  }
+  try {
+    const res = await fetch(`https://api.jsonbin.io/v3/b/${CONFIG.BIN_ID}/latest`, {
+      headers: { 'X-Access-Key': CONFIG.READ_KEY }
+    })
+    const data = await res.json()
+    const books = data.record?.books || []
+    if (books.length === 0) {
+      grid.innerHTML = '<div class="books-empty">Books coming soon. Check back shortly.</div>'
+      return
+    }
+    grid.innerHTML = books.map(b => `
+      <div class="book-card">
+        <div class="book-cover"><div class="book-title-cover">${b.title}</div></div>
+        <div class="book-body">
+          <div class="book-genre">${b.genre}</div>
+          <div class="book-name">${b.title}</div>
+          <div class="book-blurb">${b.description}</div>
+          <div class="book-footer">
+            <span class="book-lang">🇷🇼 ${b.language}</span>
+            <a href="${b.downloadLink}" target="_blank" class="download-btn">↓ Download</a>
+          </div>
+        </div>
+      </div>`).join('')
+  } catch(e) {
+    grid.innerHTML = '<div class="books-empty">Could not load books. Please try again later.</div>'
+  }
+}
+
+loadBooks()
+</script>
+</body>
+</html>
